@@ -5,7 +5,7 @@ import java.util.List;
 import com.andy.dao.UserDao;
 
 public class User {
-	private String id;
+	private String id = "0";
 	private String name;
 	private String password;
 	private UserDao userDao;
@@ -19,6 +19,14 @@ public class User {
 	
 	public List<User> findAllUser(){
 		return userDao.findAllUser();
+	}
+	
+	public User findUser(String name){
+		return userDao.findUser(name);
+	}
+	
+	public User insertUser(String username) {
+		return userDao.insertUser(username);
 	}
 	
 	public String getId() {
