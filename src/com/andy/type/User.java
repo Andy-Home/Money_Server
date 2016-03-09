@@ -25,8 +25,8 @@ public class User {
 		return userDao.findUser(name);
 	}
 	
-	public User insertUser(String username) {
-		return userDao.insertUser(username);
+	public void insertUser(String username, String password) {
+		userDao.insertUser(username, password);
 	}
 	
 	public String getId() {

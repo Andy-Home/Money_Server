@@ -55,4 +55,11 @@ public class UserDaoImpl implements UserDao {
 		if(user.getId().equals("0"))	return null;
 		return user;
 	}
+
+	@Override
+	public void insertUser(String username, String password) {
+		String sql = "insert into user(name, password) values ('" + username + "', '" + password + "')";
+		jdbcTemplate.update(sql);
+		return ;
+	}
 }

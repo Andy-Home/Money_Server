@@ -10,6 +10,6 @@ public interface UserDao {
 
 	public User findUser(String name);
 
-	public User insertUser(String username);
+	public void insertUser(String username, String password);
 
 }

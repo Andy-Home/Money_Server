@@ -107,4 +107,30 @@ public class LoginController {
 		}
 		return map;
 	}
+	
+	@RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST}, params = {
+			"username", "password"})
+	@ResponseBody
+	public Map<String, Object> register(
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			HttpServletResponse response, HttpServletRequest request){
+		Resource resource = new ClassPathResource("appliactionContext.xml");
+		BeanFactory factory = new XmlBeanFactory(resource);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		User user = (User) factory.getBean("user");
+		
+		User check = user.findUser(username);
+		if(check == null){				//沒有该用戶
+			user.insertUser(username, password);
+			map.put("result", true);
+			map.put("msg", "注册成功");
+		}
+		else{
+			map.put("result", false);
+			map.put("msg", "该用户名已被注册");
+		}
+		return map;
+	}
 }
